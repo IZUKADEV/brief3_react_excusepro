@@ -9,21 +9,3 @@ body {
 
 @import "tailwindcss/utilities";
 
-
-@theme {
-    --color-fuchsia-50: #f2effe;
-    --color-fuchsia-100: #e8e2fd;
-    --color-fuchsia-200: #cec2fa;
-    --color-fuchsia-300: #b9a4f8;
-    --color-fuchsia-400: #a283f5;
-    --color-fuchsia-500: #8f62f2;
-    --color-fuchsia-600: #7c3aed;
-    --color-fuchsia-700: #6120c3;
-    --color-fuchsia-800: #43138a;
-    --color-fuchsia-900: #270855;
-    --color-fuchsia-950: #170339;
-    --font-poppins: 'Poppins', sans-serif;
-  }
-
-
-  

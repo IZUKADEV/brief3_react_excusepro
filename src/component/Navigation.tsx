@@ -1,11 +1,13 @@
 import '../css/index.css'
 import logo from '../assets/logo-toute_page.png'
 import { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import React from 'react';
 
 export default function Navigation() { 
     const [darkMode, setDarkMode] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const isDark = localStorage.getItem('dark-mode') === 'dark' || 
@@ -27,12 +29,16 @@ export default function Navigation() {
         setDarkMode(e.target.value === 'dark');
     };
 
+    const handleGenerate = () => {
+        navigate('/generer');
+    };
+
     return (
         <nav className="flex mx-auto justify-between items-center p-4 font-poppins bg-white dark:bg-gray-900 dark:text-white transition-colors duration-300">
-            <div className="flex items-center">
+            <Link to="/" className="flex items-center">
                 <img src={logo} alt="logo" className="w-10 h-10" />
                 <h1 className="ml-3 text-3xl font-bold font-poppins">Excuse Pro</h1>
-            </div>
+            </Link>
 
             <button 
                 className="md:hidden p-2"
@@ -73,9 +79,14 @@ export default function Navigation() {
                     <option value="light" className="text-gray-700 font-poppins font-bold text-md bg-fuchsia-200">Light</option>
                     <option value="dark" className="text-gray-700 font-poppins font-bold text-md">Dark</option>
                 </select>
-                <a href="/" className="text-md font-bold font-poppins">Fonctionnalités</a>
-                <a href="/" className="text-md font-bold font-poppins">Tarifs</a>
-                <button type="submit" className="bg-fuchsia-600 text-white px-4 py-2 rounded-3xl cursor-pointer hover:bg-fuchsia-700 font-poppins font-bold">Créer une excuse</button>
+                <Link to="/fonctionnalites" className="text-md font-bold font-poppins hover:text-fuchsia-600 transition-colors">Fonctionnalités</Link>
+                <Link to="/tarifs" className="text-md font-bold font-poppins hover:text-fuchsia-600 transition-colors">Tarifs</Link>
+                <button 
+                    onClick={handleGenerate}
+                    className="bg-fuchsia-600 text-white px-4 py-2 rounded-3xl cursor-pointer hover:bg-fuchsia-700 font-poppins font-bold"
+                >
+                    Créer une excuse
+                </button>
             </div>
 
             {isMenuOpen && (
@@ -91,9 +102,27 @@ export default function Navigation() {
                             <option value="light" className="text-gray-700 font-poppins font-bold text-md bg-fuchsia-200">Light</option>
                             <option value="dark" className="text-gray-700 font-poppins font-bold text-md">Dark</option>
                         </select>
-                        <a href="/" className="text-md font-bold font-poppins block py-2">Fonctionnalités</a>
-                        <a href="/" className="text-md font-bold font-poppins block py-2">Tarifs</a>
-                        <button type="submit" className="w-full bg-fuchsia-600 text-white px-4 py-2 rounded-3xl cursor-pointer hover:bg-fuchsia-700 font-poppins font-bold">
+                        <Link 
+                            to="/fonctionnalites" 
+                            className="text-md font-bold font-poppins block py-2 hover:text-fuchsia-600 transition-colors"
+                            onClick={() => setIsMenuOpen(false)}
+                        >
+                            Fonctionnalités
+                        </Link>
+                        <Link 
+                            to="/tarifs" 
+                            className="text-md font-bold font-poppins block py-2 hover:text-fuchsia-600 transition-colors"
+                            onClick={() => setIsMenuOpen(false)}
+                        >
+                            Tarifs
+                        </Link>
+                        <button 
+                            onClick={() => {
+                                handleGenerate();
+                                setIsMenuOpen(false);
+                            }}
+                            className="w-full bg-fuchsia-600 text-white px-4 py-2 rounded-3xl cursor-pointer hover:bg-fuchsia-700 font-poppins font-bold"
+                        >
                             Créer une excuse
                         </button>
                     </div>
