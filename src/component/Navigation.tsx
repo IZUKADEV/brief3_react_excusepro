@@ -59,7 +59,7 @@ export default function Navigation() {
                     name="dark-mode"
                     id="dark-mode"
                     value={darkMode ? 'dark' : 'light'}
-                    onChange={(e) => setDarkMode(e.target.value === 'dark')}
+                    onChange={handleModeChange}
                         className="text-gray-100 dark:text-white 
                         bg-fuchsia-500 dark:bg-gray-800 
                         px-4 py-2 rounded-3xl cursor-pointer 
