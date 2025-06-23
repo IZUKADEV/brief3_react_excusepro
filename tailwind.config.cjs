@@ -10,7 +10,7 @@ module.exports = {
         poppins: ['Poppins', 'sans-serif'],
       },
       colors: {
-        myColor: {
+        fuchsia: {
           "50": "#f2ebfd",
           "100": "#e5d8fb",
           "200": "#cbb0f8",
@@ -25,5 +25,4 @@ module.exports = {
       }
     },
   },
-
-}
+} 
