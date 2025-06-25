@@ -32,6 +32,16 @@ export default function Fonctionnalites() {
                             Fonctionnalités
                         </motion.span>
                     </motion.h1>
+
+                    <motion.p
+                        initial={{ y: 20, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        transition={{ duration: 0.6, delay: 0.3 }}
+                        className="text-xl md:text-2xl font-poppins text-gray-500 dark:text-gray-300 mb-6 md:mb-8"
+                    >
+                        Découvrez toutes les fonctionnalités de notre application.
+                    </motion.p>
+                    
                 </div>
                 <motion.div 
                     initial={{ x: 50, opacity: 0 }}
