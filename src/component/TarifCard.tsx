@@ -15,7 +15,7 @@ export default function TarifCard({ title, price, features, buttonLabel, delay =
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay }}
-            className="flex-1 bg-white dark:bg-gray-800 rounded-2xl h-96 shadow-lg p-8 flex flex-col items-center mb-10"
+            className="flex-1 bg-white dark:bg-gray-800 dark:text-white rounded-2xl h-96 shadow-lg p-8 flex flex-col items-center mb-10"
         >
             <motion.h3
                 initial={{ opacity: 0, y: 10 }}
