@@ -78,7 +78,7 @@ export default function Form() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch("/src/back/api.json")
+    fetch("../back/api.json")
       .then(res => res.json())
       .then(data => {
         setExcusesData(data);
@@ -96,7 +96,7 @@ export default function Form() {
       setExcuse("La base d'excuses n'est pas disponible.");
       return;
     }
-    // Recherche dynamique de la bonne clé dans le JSON
+
     const normalizedCategory = normalize(category);
     const jsonKey = Object.keys(excusesData).find(
       key => normalize(key) === normalizedCategory
