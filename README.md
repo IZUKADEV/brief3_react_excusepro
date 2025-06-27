@@ -8,10 +8,6 @@ Générateur d’excuses aléatoires construit avec **React**, **TypeScript**, *
 - [Fonctionnalités](#fonctionnalités)
 - [Tech Stack](#tech-stack)
 - [Installation](#installation)
-- [Usage](#usage)
-- [Structure du projet](#structure-du-projet)
-- [Contribuer](#contribuer)
-- [Licence](#licence)
 
 ---
 
