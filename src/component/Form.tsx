@@ -78,7 +78,7 @@ export default function Form() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch("./assets/api.json")
+    fetch("/api.json")
       .then(res => res.json())
       .then(data => {
         setExcusesData(data);
