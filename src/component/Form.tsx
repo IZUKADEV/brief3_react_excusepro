@@ -35,7 +35,7 @@ function AnimatedField({ label, children }: { label: string; children: ReactNode
       transition={{ duration: 0.4 }}
       className="flex flex-col items-start"
     >
-      <label className="block font-medium mb-1 text-left">{label}</label>
+      <label className="block font-medium mb-1 text-left text-gray-700 dark:text-gray-200">{label}</label>
       {children}
     </motion.div>
   );
@@ -47,14 +47,16 @@ function Card({ selected, onClick, icon, title }: { selected?: boolean; onClick?
       type="button"
       whileTap={{ scale: 0.96 }}
       whileHover={{ scale: 1.04 }}
-      className={`flex flex-col items-center justify-center py-7 px-2 rounded-xl border transition-all w-[120px] h-[120px] overflow-hidden
-        ${selected ? "bg-violet-600 text-white border-violet-600" : "bg-gray-100 text-gray-700 border-gray-200"}`}
+      className={`flex flex-col items-center justify-center py-4 px-2 rounded-xl border transition-all w-full max-w-[120px] lg:max-w-[150px] h-[100px] lg:h-[130px] overflow-hidden
+        ${selected 
+          ? "bg-violet-600 text-white border-violet-600 dark:bg-violet-500 dark:border-violet-500" 
+          : "bg-gray-100 text-gray-700 border-gray-200 dark:bg-gray-800 dark:text-gray-200 dark:border-gray-700 hover:bg-gray-200 dark:hover:bg-gray-700"
+        }`}
       onClick={onClick}
       aria-pressed={selected}
-      style={{ minWidth: 120, maxWidth: 120 }}
     >
-      <span className="mb-2">{icon}</span>
-      <span className="text-sm font-semibold text-center truncate w-full block">{title}</span>
+      <span className="mb-2 lg:mb-3">{icon}</span>
+      <span className="text-xs lg:text-sm font-semibold text-center truncate w-full block">{title}</span>
     </motion.button>
   );
 }
@@ -111,39 +113,27 @@ export default function Form() {
   }
 
   return (
-    <motion.main initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+    <motion.main 
+      initial={{ opacity: 0 }} 
+      animate={{ opacity: 1 }} 
+      className="flex flex-col w-full px-4 sm:px-6 lg:px-8"
+    >
       <motion.section
-        className="max-w-md mx-auto p-0 mt-8"
+        className="mt-8 w-full max-w-2xl lg:max-w-4xl"
         initial={{ scale: 0.95, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 0.5 }}
       >
-        <motion.h1
-          className="text-3xl font-bold mb-2 text-left"
-          initial={{ opacity: 0, y: -30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          Créer une excuse
-        </motion.h1>
-        <motion.p
-          className="mb-6 text-gray-600 text-left"
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.5 }}
-        >
-          Remplissez le formulaire ci-dessous et recevez instantanément une excuse personnalisée adaptée à votre besoin.
-        </motion.p>
         {loading ? (
-          <div className="text-center text-gray-500">Chargement des excuses…</div>
+          <div className="text-center text-gray-500 dark:text-gray-400">Chargement des excuses…</div>
         ) : error ? (
-          <div className="text-center text-red-500">{error}</div>
+          <div className="text-center text-red-500 dark:text-red-400">{error}</div>
         ) : (
           <motion.form className="space-y-4" initial="hidden" animate="visible" onSubmit={handleSubmit}>
             <AnimatedField label="Pour quelle raison avez-vous besoin d'une excuse ?">
               <motion.input
                 type="text"
-                className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-violet-500"
+                className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-violet-500 bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
                 placeholder="Manqué mon cours de crossfit"
                 value={reason}
                 onChange={e => setReason(e.target.value)}
@@ -156,7 +146,7 @@ export default function Form() {
             <AnimatedField label="Contexte additionnel">
               <motion.input
                 type="text"
-                className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-violet-500"
+                className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-violet-500 bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
                 placeholder="Pas allé m'entraîner depuis 2 semaines"
                 value={context}
                 onChange={e => setContext(e.target.value)}
@@ -167,7 +157,7 @@ export default function Form() {
             </AnimatedField>
             <AnimatedField label="Ton de l'excuse">
               <motion.select
-                className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-violet-500"
+                className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-violet-500 bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white"
                 value={tone}
                 onChange={e => setTone(e.target.value)}
                 initial={{ opacity: 0, x: -20 }}
@@ -185,8 +175,8 @@ export default function Form() {
               transition={{ delay: 0.4, duration: 0.4 }}
               className="flex flex-col items-start"
             >
-              <label className="block font-medium mb-2 text-left">Catégorie</label>
-              <div className="flex gap-3 w-full">
+              <label className="block font-medium mb-2 text-left text-gray-700 dark:text-gray-200">Catégorie</label>
+              <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-4 gap-4 w-full">
                 {categories.map(cat => (
                   <Card
                     key={cat.key}
@@ -205,7 +195,7 @@ export default function Form() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.4 }}
-              className="w-full mt-4 bg-violet-600 text-white font-bold py-3 rounded-xl text-lg shadow-md hover:bg-violet-700 transition"
+              className="w-full mt-4 bg-violet-600 dark:bg-violet-500 text-white font-bold py-3 rounded-xl text-lg shadow-md hover:bg-violet-700 dark:hover:bg-violet-600 transition-colors"
             >
               Générer
             </motion.button>
@@ -215,7 +205,7 @@ export default function Form() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="mt-8 p-4 border-l-4 border-violet-600 bg-violet-50 text-violet-900 text-lg rounded"
+            className="mt-8 p-4 border-l-4 border-violet-600 dark:border-violet-500 bg-violet-50 dark:bg-violet-900/20 text-violet-900 dark:text-violet-100 text-lg rounded-lg"
           >
             <strong>Excuse générée :</strong><br />
             {excuse}
